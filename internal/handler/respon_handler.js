@@ -5,7 +5,7 @@ class ResponHandler {
             res.status(200).json({
                 massage: 'Server Running'
             })
-                console.log('Lanjutkan Anak Muda')    
+                console.log('Lanjutkan')    
                 return
             }
             catch{

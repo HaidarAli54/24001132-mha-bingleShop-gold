@@ -8,6 +8,8 @@ require('dotenv').config()
 const port = process.env.PORT 
 
 const resHandler = new ResponHandler()
+
+
 app.get('/ping',resHandler.response)
 
 app.listen(port,()=>{
