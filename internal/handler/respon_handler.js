@@ -3,14 +3,14 @@ class ResponHandler {
     async response(req,res){
          try {
             res.status(200).json({
-                massage: 'Server Berjalan'
+                massage: 'Server Running'
             })
                 console.log('Lanjutkan Anak Muda')    
                 return
             }
             catch{
                 res.status(500).json({
-                    massage:'Server Sibuk'
+                    massage:'Server Busy'
                 })
         }
         

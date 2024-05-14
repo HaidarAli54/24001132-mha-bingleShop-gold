@@ -11,5 +11,5 @@ const resHandler = new ResponHandler()
 app.get('/ping',resHandler.response)
 
 app.listen(port,()=>{
-    console.log(`sedang berjalan di ${port}`)
+    console.log(`server up and running in ${port}`)
 })
