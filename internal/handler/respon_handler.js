@@ -8,11 +8,14 @@ class ResponHandler {
                 console.log('Lanjutkan')    
                 return
             }
-            catch{
+            catch (error){
                 res.status(500).json({
-                    massage:'Server Busy'
-                })
-        }
+                    massage:'Server Busy',
+                    data: null,
+                    err: error.massage
+                }) 
+                return
+            }
         
     }
 }
