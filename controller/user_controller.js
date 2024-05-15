@@ -9,7 +9,6 @@ class userController {
             const createUsers = await User.create({
                 fullname: req.body.fullname,
                 address: req.body.address,
-                phone: req.body.phone,
                 email: req.body.email,
                 password: bcrypt.hashSync(req.body.password, 8),
                 role: 'user'
@@ -32,12 +31,11 @@ class userController {
             const createUsers = await User.create({
                 fullname: req.body.fullname,
                 address: req.body.address,
-                phone: req.body.phone,
                 email: req.body.email,
                 password: bcrypt.hashSync(req.body.password, 8),
                 role: 'seller'
             })
-                //memberikan respon bila gagal membuat user baru
+                //memberikan respon bila gagal membuat seller baru
                 if(!createUsers){
                     throw new errorHelper(400, 'cannot create user')
                 }
