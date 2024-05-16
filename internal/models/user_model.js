@@ -1,5 +1,4 @@
 
-
 const { DataTypes } = require('sequelize');
 const sequelize = require("../../pkg/db")
 
@@ -9,17 +8,14 @@ const User = sequelize.define('User', {
     primaryKey: true,
     autoIncrement: true
   },
-  fullName: {
-    type: DataTypes.STRING(100),
-    allowNull: false
-  },
-  address: {
-    type: DataTypes.STRING,
+  full_Name: {
+    type: DataTypes.STRING(255),
     allowNull: false
   },
   email: {
     type: DataTypes.STRING(100),
-    allowNull: false
+    allowNull: false,
+    unique: true
   },
   password: {
     type: DataTypes.STRING(100),
@@ -32,7 +28,12 @@ const User = sequelize.define('User', {
 },{
 
   sequelize: sequelize,
-  timestamps: false
+  timestamps: true,
+  paranoid: true,
+  underscored: true,
+  deletedAt: 'deleted_at',
+  updatedAt: 'updated_at',
+  createdAt: 'created_at',
 })
 
 module.exports = User
