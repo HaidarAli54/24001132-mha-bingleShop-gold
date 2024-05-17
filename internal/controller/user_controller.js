@@ -11,7 +11,22 @@ class userController {
         try { 
             await userService.registerUser(body)
 
-            return new response (res, 201, 'create user succes')
+            return new response (res, 201, 'create user succesfully')
+    
+        }
+
+       catch(error) {
+            next(error)
+        }  
+    }
+    async registerSeller (req, res, next) {
+        const body = req.body
+        const userService = new UserService()
+
+        try { 
+            await userService.registerSeller(body)
+
+            return new response (res, 201, 'create seller succesfully')
     
         }
 

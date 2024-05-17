@@ -13,18 +13,21 @@ const Product = sequelize.define('product', {
     allowNull: true,
     field: 'user_id'
   },
-  name_product: {
+  name: {
     type: DataTypes.STRING,
     allowNull: true
   },
-  category: {
-    type: DataTypes.INTEGER,
-    allowNull: true,
-    field: 'category_id'
+  description: {
+    type: DataTypes.DOUBLE,
+    allowNull: true
   },
   price: {
     type: DataTypes.DOUBLE,
     allowNull: true
+  },
+  category: {
+    type: DataTypes.STRING,
+    allowNull: true,
   },
   quantity: {
     type: DataTypes.INTEGER,

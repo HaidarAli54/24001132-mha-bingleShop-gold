@@ -24,6 +24,25 @@ class UserService{
             throw new errorHelper(400, 'email sudah terdaftar')
         }   
     }
+    async registerSeller (body){
+
+        const userRepository = new UserRepository
+        // buat data seller yg di kirim ke database
+        const data = {
+            full_name: body.full_name,
+            email: body.email,
+            password: bcrypt.hashSync(body.password, 8),
+            role: 'seller'
+        }
+        //insert ke database
+        await userRepository.createUser(data)
+
+        // cek user apakah ada user email yang sama
+        const user = await userRepository.getUserByEmail(body.email)
+        if(user){
+            throw new errorHelper(400, 'email sudah terdaftar')
+        }   
+    }
 }
 
 
