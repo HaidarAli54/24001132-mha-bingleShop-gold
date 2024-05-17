@@ -12,7 +12,7 @@ class UserRepository{
         await User.create({
             full_name: data.full_name,
             email: data.email,
-            password: data.pasword,
+            password: data.password,
             role: data.role
         })
     }

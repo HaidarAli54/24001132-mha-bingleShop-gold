@@ -11,7 +11,7 @@ const Product = sequelize.define('product', {
   id_user: {
     type: DataTypes.INTEGER,
     allowNull: true,
-    field: 'user_id'
+    field: 'id_user'
   },
   name: {
     type: DataTypes.STRING,
@@ -45,4 +45,4 @@ const Product = sequelize.define('product', {
 
     
   
-module.exports = product
+module.exports = Product

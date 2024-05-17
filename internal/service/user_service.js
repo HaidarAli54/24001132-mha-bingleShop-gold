@@ -5,9 +5,16 @@ const errorHelper = require ('../error_response/error_helper')
 
 class UserService{ 
 
-    async registerUser (body){
+    async registerUser(body) {
 
-        const userRepository = new UserRepository
+        const userRepository = new UserRepository()
+
+        // cek user apakah ada user email yang sama
+        const user = await userRepository.getUserByEmail(body.email)
+        if(user){
+            throw new errorHelper(400, 'email sudah terdaftar')
+        }  
+
         // buat data yg di kirim ke database
         const data = {
             full_name: body.full_name,
@@ -15,18 +22,22 @@ class UserService{
             password: bcrypt.hashSync(body.password, 8),
             role: 'user'
         }
+
         //insert ke database
         await userRepository.createUser(data)
+
+ 
+    }
+    async registerSeller(body) {
+
+        const userRepository = new UserRepository()
 
         // cek user apakah ada user email yang sama
         const user = await userRepository.getUserByEmail(body.email)
         if(user){
             throw new errorHelper(400, 'email sudah terdaftar')
         }   
-    }
-    async registerSeller (body){
 
-        const userRepository = new UserRepository
         // buat data seller yg di kirim ke database
         const data = {
             full_name: body.full_name,
@@ -37,11 +48,6 @@ class UserService{
         //insert ke database
         await userRepository.createUser(data)
 
-        // cek user apakah ada user email yang sama
-        const user = await userRepository.getUserByEmail(body.email)
-        if(user){
-            throw new errorHelper(400, 'email sudah terdaftar')
-        }   
     }
 }
 
