@@ -1,30 +1,37 @@
 
 
-const { Model, DataTypes } = require("sequelize")
+const { DataTypes } = require("sequelize")
 const sequelize = require("../../pkg/db")
 
-class order extends Model {
-}
-
-order.init(
-  {
-    id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
-      }, 
-      user_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        field: 'user_id'
-      },
-      total_price: {
-        type: DataTypes.DOUBLE,
-        allowNull: false,
-      },
+const Order = sequelize.define('order', {
+  id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
+  }, 
+  id_user: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    field: 'id_user'
   },
-
-  {
+  id_product: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    field: 'id_product'
+  },
+  quantity: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
+  order_date: {
+    type: DataTypes.TIMESTAMP,
+    allowNull: false,
+  },
+  total_price: {
+    type: DataTypes.DOUBLE,
+    allowNull: false,
+  },
+},{
     sequelize: sequelize,
     timestamps: true,
     paranoid: true,
@@ -32,7 +39,8 @@ order.init(
     deletedAt: 'deleted_at',
     updatedAt: 'updated_at',
     createdAt: 'created_at',
-  },
-)
+  })
 
-module.exports = order
+
+
+module.exports = Order

@@ -1,6 +1,6 @@
 
-const ProductService = require ('../service/product_service')
-const response = require ('../error_response/response_helper')
+const ProductService = require('../service/product_service')
+const response = require('../error_response/response_helper')
 
 
 const productService = new ProductService()
@@ -16,7 +16,7 @@ class productController {
         try { 
             await productService.createProduct(body)
 
-            return new response (res, 201, 'create product succesfully')
+            return new response(res, 201, 'create product succesfully')
     
         }
 

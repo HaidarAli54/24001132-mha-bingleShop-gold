@@ -1,6 +1,5 @@
 
 const ProductRepository = require('../repository/product_repository')
-const errorHelper = require ('../error_response/error_helper')
 
 const productRepository = new ProductRepository()
 
