@@ -2,11 +2,16 @@
 const ProductService = require ('../service/product_service')
 const response = require ('../error_response/response_helper')
 
-class ProductController {
 
-    async createProduct (req, res, next) {
+const productService = new ProductService()
+
+
+class productController {
+
+    //controller createProduk
+    async createProduct(req, res, next) {
+
         const body = req.body
-        const productService = new ProductService()
 
         try { 
             await productService.createProduct(body)
@@ -16,9 +21,27 @@ class ProductController {
         }
 
        catch(error) {
-            next(error)
+            next(error) 
         }  
     }
+
+    //controller melihat semua Produk
+
+    async readProduct(req, res, next) {
+
+        try {
+
+            const result = await productService.readProduct()
+
+
+            return new response(res, 201, result)
+
+        } catch (error) {
+            next(error)
+        }
+    }
+   
+    
 }
 
-module.exports = ProductController
+module.exports = productController

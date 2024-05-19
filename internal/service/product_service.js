@@ -1,14 +1,13 @@
 
 const ProductRepository = require('../repository/product_repository')
-// const bcrypt = require ('bcrypt')
-// const errorHelper = require ('../error_response/error_helper')
+const errorHelper = require ('../error_response/error_helper')
+
+const productRepository = new ProductRepository()
 
 class ProductService { 
 
+    //seller masukan product
     async createProduct(body) {
-
-        //seller masukan product
-        const productRepository = new ProductRepository()
 
         const data = {
             id_user: body.id_user,
@@ -21,6 +20,11 @@ class ProductService {
         await productRepository.createProduct(data)
     }
 
+    //melihat semua product
+    async readProduct() {
+
+        return await productRepository.findProductAll() 
+    }
 }
 
 module.exports = ProductService

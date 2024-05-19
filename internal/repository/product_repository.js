@@ -13,6 +13,17 @@ class ProductRepository{
             quantity: data.quantity
         })
     }
+
+    async findProductAll() {
+
+        const findProduct  = await Product.findAll() 
+        
+        if(!findProduct) {
+            throw new errorHelper (404, "Product not found") 
+        }
+
+        return findProduct
+    }
 }
 
 
