@@ -24,6 +24,7 @@ class ProductService {
 
         return await productRepository.findProductAll() 
     }
+    
 }
 
 module.exports = ProductService

@@ -24,7 +24,7 @@ const Order = sequelize.define('order', {
     allowNull: false,
   },
   order_date: {
-    type: DataTypes.TIMESTAMP,
+    type: DataTypes.TIME,
     allowNull: false,
   },
   total_price: {

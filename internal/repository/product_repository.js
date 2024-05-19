@@ -24,6 +24,17 @@ class ProductRepository{
 
         return findProduct
     }
+
+    async findById(id_product) {
+        const findById = await Product.findOne({
+            where: {id:id_product}
+        })
+        if(!findById) {
+            throw new errorHelper(404, "product not found") 
+        }
+
+        return findById
+    }
 }
 
 
