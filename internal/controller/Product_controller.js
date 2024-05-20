@@ -27,11 +27,11 @@ class productController {
 
     //controller melihat semua Product
 
-    async readProduct(req, res, next) {
+    async findProductAll(req, res, next) {
 
         try {
 
-            const result = await productService.readProduct()
+            const result = await productService.findProductAll()
 
             return new response(res, 201, result)
 

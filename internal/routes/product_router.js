@@ -8,7 +8,9 @@ const productController = new ProductController()
 //router product
 router.post('/api/product', tokenJwt.verifyToken, tokenJwt.otorisasi, productController.createProduct)
 // router read Product
-router.get('/api/product',productController.readProduct)
+router.get('/api/product',productController.findProductAll)
+
+router.get('/api/product/:id',productController.findById)
 // router delete product
 router.delete('/api/product/:id',productController.deleteProduct);
 
