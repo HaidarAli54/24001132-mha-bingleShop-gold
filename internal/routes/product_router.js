@@ -8,5 +8,7 @@ const productController = new ProductController()
 router.post('/api/product',productController.createProduct)
 // router read Product
 router.get('/api/product',productController.readProduct)
+// router delete
+router.delete('/api/product',productController.deleteProduct)
 
 module.exports = router

@@ -40,7 +40,19 @@ class productController {
             next(error)
         }
     }
-   
+    async deleteProduct(req, res, next) {
+
+        const id_product = req.params.id;
+        const id_user= req.id_user; // Assuming you have the user id in the request
+
+        try {
+            await productService.deleteProduct(id_product, id_user);
+            return new response(res, 200, 'Product deleted successfully');
+            
+        } catch (error) {
+            next(error);
+        }
+    }
     
 }
 

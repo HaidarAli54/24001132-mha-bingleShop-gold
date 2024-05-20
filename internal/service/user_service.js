@@ -1,13 +1,16 @@
 
 const UserRepository = require('../repository/user_repository')
-const bcrypt = require ('bcrypt')
-const errorHelper = require ('../error_response/error_helper')
+const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
+const errorHelper = require('../error_response/error_helper')
 
-class UserService{ 
+const userRepository = new UserRepository()
+const secret = process.env.JWT_KEY
+
+
+class UserService { 
 
     async registerUser(body) {
-
-        const userRepository = new UserRepository()
 
         // cek user apakah ada user email yang sama
         const user = await userRepository.getUserByEmail(body.email)
@@ -28,9 +31,9 @@ class UserService{
 
  
     }
+
     async registerSeller(body) {
 
-        const userRepository = new UserRepository()
 
         // cek user apakah ada user email yang sama
         const user = await userRepository.getUserByEmail(body.email)
@@ -48,6 +51,32 @@ class UserService{
         //insert ke database
         await userRepository.createUser(data)
 
+    }
+
+    async loginUser(body) {
+
+        //cek apakah ada user yang sama
+        const findUser = await userRepository.getUserByEmail(body.email)
+
+        if(!findUser) {
+            throw new errorHelper(404, 'email not found')
+        }
+
+        if (!body.password || !findUser.password) {
+            throw new errorHelper(400, 'Password is required');
+        }
+
+        //variabel falidasi pssword
+        const passwordIsValid = bcrypt.compareSync(body.password, findUser.password);
+        
+        if(!passwordIsValid) {
+            throw new errorHelper(400, 'Invalid password')
+        }
+
+        //membuat token dan mengirimkan kedalam respon
+        const token = jwt.sign({ id: findUser.id, full_name: findUser.full_name, role: findUser.role }, secret, {expiresIn : 86400 })//24 jam
+        
+        return { auth: true, token }
     }
 }
 

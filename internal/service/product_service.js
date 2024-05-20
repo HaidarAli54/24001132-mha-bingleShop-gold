@@ -24,6 +24,11 @@ class ProductService {
 
         return await productRepository.findProductAll() 
     }
+    //menghapus product
+    async deleteProduct(body) {
+
+        return await productRepository.deleteProduct(i);
+    }
     
 }
 
