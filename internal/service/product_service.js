@@ -24,12 +24,12 @@ class ProductService {
 
         return await productRepository.findProductAll() 
     }
-    //menghapus product
-    async deleteProduct(body) {
-
-        return await productRepository.deleteProduct(i);
-    }
     
+    // hapus product by id
+    async deleteProduct(id_product) {
+        await productRepository.deleteProduct(id_product);
+    }
+
 }
 
 module.exports = ProductService

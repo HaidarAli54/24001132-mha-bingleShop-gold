@@ -1,38 +1,38 @@
 
-const jwt = require('jsonwebtoken')
-const config = require('../middleware/auth')
+const jwt = require('jsonwebtoken');
 
+const secret = process.env.JWT_KEY;
 
 class TokenJwt{
 
     verifyToken (req, res, next) {
 
-        const autHeader = req.headers['authorization']
+        const authHeader = req.headers['authorization'];
+        const token = authHeader && authHeader.split(' ')[1];
 
-        if (!autHeader) {
+        if (!token) {
             return res.status(403).json({
-                message: 'no token provided!'
+                message: 'Token no provided!'
             });
         }
 
-        const token = autHeader.split('')[1];
-
-        jwt.verify(token, config.secret, (err, decoded) =>{
-            if(err) {
+        jwt.verify(token, secret, (err, decoded) => {
+            
+            if (err) {
                 return res.status(401).json({
-                    message: 'unauthentized!'
-                })
+                    message: 'Unauthorized!'
+                });
             }
-            req.userId = decoded.id
-            req.userRole = decoded.role
+            req.Id_user = decoded.id;
+            req.role = decoded.role;
             next()
         })
     }
 
     otorisasi (req, res, next) {
-        if(req.userRole == 'user' || req.userRole == 'seller') {
+        if(req.role === 'user' || req.role === 'seller') {
             next();
-            
+
         }else{
             res.status(500).json({
                 message: 'you are not allowed'

@@ -66,7 +66,7 @@ class UserService {
             throw new errorHelper(400, 'Password is required');
         }
 
-        //variabel falidasi pssword
+        //variabel validasi pssword
         const passwordIsValid = bcrypt.compareSync(body.password, findUser.password);
         
         if(!passwordIsValid) {

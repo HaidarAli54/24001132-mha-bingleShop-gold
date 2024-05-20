@@ -35,6 +35,18 @@ class ProductRepository{
 
         return findById
     }
+    
+    async deleteProduct(id_product) {
+        const product = await Product.findOne({
+            where: { id: id_product }
+        });
+
+        if (!product) {
+            throw new errorHelper(404, "Product not found");
+        }
+
+        await product.destroy();
+    }
 
 
 }

@@ -8,7 +8,7 @@ const productService = new ProductService()
 
 class productController {
 
-    //controller createProduk
+    //controller createProduct
     async createProduct(req, res, next) {
 
         const body = req.body
@@ -25,7 +25,7 @@ class productController {
         }  
     }
 
-    //controller melihat semua Produk
+    //controller melihat semua Product
 
     async readProduct(req, res, next) {
 
@@ -33,21 +33,22 @@ class productController {
 
             const result = await productService.readProduct()
 
-
             return new response(res, 201, result)
 
         } catch (error) {
             next(error)
         }
     }
+
+    // controller deleteProduct
     async deleteProduct(req, res, next) {
 
-        const id_product = req.params.id;
-        const id_user= req.id_user; // Assuming you have the user id in the request
+        const { id_product } = req.params;
 
         try {
-            await productService.deleteProduct(id_product, id_user);
-            return new response(res, 200, 'Product deleted successfully');
+            await productService.deleteProduct(id_product);
+
+            return new response(res, 200, 'Delete product successfully');
             
         } catch (error) {
             next(error);
