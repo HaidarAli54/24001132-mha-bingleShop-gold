@@ -40,17 +40,30 @@ class productController {
         }
     }
 
+    //controller lihat produk by id
+    async findById(req, res, next) {
+
+        try {
+
+            const result = await productService.findById(req.params.id)
+
+            return new response(res, 201, result)
+
+        } catch(error) {
+            next(error)
+        }
+    }
+
     // controller deleteProduct
     async deleteProduct(req, res, next) {
 
-        const { id_product } = req.params;
-
         try {
-            await productService.deleteProduct(id_product);
+
+            await productService.deleteProduct(req.params.id);
 
             return new response(res, 200, 'Delete product successfully');
             
-        } catch (error) {
+        } catch(error) {
             next(error);
         }
     }

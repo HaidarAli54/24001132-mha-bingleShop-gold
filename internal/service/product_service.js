@@ -25,6 +25,11 @@ class ProductService {
         return await productRepository.findProductAll() 
     }
     
+    //melihat produk by id
+    async findById(id_product) {
+        
+        return await productRepository.findById(id_product)
+    }
 
     // hapus product by id
     async deleteProduct(id_product) {

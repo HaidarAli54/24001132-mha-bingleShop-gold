@@ -17,8 +17,6 @@ class UserRepository{
             role: data.role
         })
     }
-    
 }
-
 
 module.exports = UserRepository
