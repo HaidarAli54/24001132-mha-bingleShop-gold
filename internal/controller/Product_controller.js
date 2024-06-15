@@ -60,7 +60,7 @@ class productController {
         try {
 
             await productService.deleteProduct(req.params.id);
-
+            
             return new response(res, 200, 'Delete product successfully');
             
         } catch(error) {

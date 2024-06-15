@@ -1,5 +1,7 @@
 
 const Product = require ('../models/product_model')
+const ErrorHelper = require('../error_response/error_helper') 
+const errorHelper = new ErrorHelper();
 
 class ProductRepository{
 
@@ -47,6 +49,7 @@ class ProductRepository{
 
         await product.destroy();
     }
+
 
 
 }

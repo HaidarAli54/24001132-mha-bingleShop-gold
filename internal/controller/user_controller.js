@@ -9,7 +9,7 @@ class userController {
 
     async registerUser(req, res, next) {
 
-        const body = req.body
+        const body = req.body;
 
         try { 
             await userService.registerUser(body)
