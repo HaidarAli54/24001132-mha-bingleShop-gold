@@ -11,6 +11,8 @@ router.post('/api/product', tokenJwt.verifyToken, tokenJwt.otorisasi, productCon
 router.get('/api/product',productController.findProductAll)
 //router get product by id
 router.get('/api/product/:id',productController.findById)
+//router update product
+router.put('/api/product/:id',productController.updateProduct)
 // router delete product
 router.delete('/api/product/:id',productController.deleteProduct);
 

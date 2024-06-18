@@ -53,6 +53,22 @@ class productController {
             next(error)
         }
     }
+    // controller updateProduct
+    async updateProduct(req, res, next) {
+
+        try {
+            
+            await productService.updateProduct(req.params.id)
+
+            return new response(res, 200, 'update product succesfully')
+
+        } catch (error) {
+            next(error)
+        }
+    }
+
+
+
 
     // controller deleteProduct
     async deleteProduct(req, res, next) {
@@ -68,6 +84,7 @@ class productController {
         }
     }
     
+    // controller updater product
 }
 
 module.exports = productController

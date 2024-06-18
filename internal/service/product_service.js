@@ -31,11 +31,19 @@ class ProductService {
         return await productRepository.findById(id_product)
     }
 
+    // update product
+    async updateProduct(id_product) {
+
+        return await productRepository.updateProduct(id_product)
+    }
+
+
     // hapus product by id
     async deleteProduct(id_product) {
         await productRepository.deleteProduct(id_product);
     }
 
+    //update product
 }
 
 module.exports = ProductService

@@ -38,6 +38,17 @@ class ProductRepository{
         return findById
     }
     
+    async updateProduct(id_product) {
+        const product = await Product.findOne({
+            where: {id: id_product}
+        })
+
+        if (!product) {
+            throw new errorHelper(404, "Product not found");
+        }
+        await product.update();
+    }
+
     async deleteProduct(id_product) {
         const product = await Product.findOne({
             where: { id: id_product }
@@ -50,7 +61,7 @@ class ProductRepository{
         await product.destroy();
     }
 
-
+    
 
 }
 
