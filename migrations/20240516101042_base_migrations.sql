@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS "products" (
   "id" SERIAL PRIMARY KEY,
   "id_user" INT NOT NULL,
   "name" VARCHAR(100) NOT NULL,
+  "images" VAR
   "description" VARCHAR(255),
   "price" DECIMAL(10,2) NOT NULL,
   "category" VARCHAR(100) NOT NULL,
@@ -34,14 +35,21 @@ CREATE TABLE IF NOT EXISTS "orders" (
   "created_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   "deleted_at" TIMESTAMP
 );
+CREATE TABLE IF NOT EXISTS "images" (
+  "id" SERIAL PRIMARY KEY,
+  "id_product" INT NOT NULL,
+  "image" VARCHAR NOT NULL
+)
 
 ALTER TABLE "products" ADD FOREIGN KEY ("id_user") REFERENCES "users" ("id") ON DELETE CASCADE;
 
 ALTER TABLE "orders" ADD FOREIGN KEY ("id_product") REFERENCES "products" ("id") ON DELETE CASCADE;
 
 ALTER TABLE "orders" ADD FOREIGN KEY ("id_user") REFERENCES "users" ("id") ON DELETE CASCADE;
+
 -- migrate:down
 
 DROP TABLE IF EXISTS "orders";
 DROP TABLE IF EXISTS "products";
 DROP TABLE IF EXISTS "users";
+DROP TABLE IF EXISTS "images";
